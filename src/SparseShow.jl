@@ -49,6 +49,7 @@ function selectshown(s::SparseMatrixCSC{T,TI}, (maxrows, maxcols)::Tuple) where 
     return matrix
 end
 
+spshow(s::SparseMatrixCSC) = spshow(stdout, s)
 spshow(io::IO, s::SparseMatrixCSC{T}) where {T} = selectshown(s, displaysize(io) ./ (1,10) .- (5,2))
 
 function Base.replace_in_print_matrix(A::Matrix{Union{T,Int,Spdef}}, i::Integer, j::Integer,s::AbstractString) where {T}

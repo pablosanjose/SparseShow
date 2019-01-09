@@ -1,0 +1,7 @@
+name = "SparseShow"
+uuid = "35b160a6-1328-11e9-3d46-251c03a4c03f"
+authors = ["Pablo San-Jose <lekand@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"

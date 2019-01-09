@@ -6,7 +6,7 @@ export spshow
 struct Spdef end
 spdef = Spdef()
 
-dist((i, j), (sx, sy)) = min(i - 1, sx - i) + min(j - 1, sy - 1)
+dist((i, j), (sx, sy)) = min(i - 1, sx - i) + min(j - 1, sy - j)
 selectshown(s, n::Int) = selectshown(s, (n, n))
 function selectshown(s::SparseMatrixCSC{T,TI}, (maxrows, maxcols)::Tuple) where {T,TI}
     I, J, V = findnz(s)

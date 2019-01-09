@@ -46,18 +46,19 @@ function selectshown(s::SparseMatrixCSC{T,TI}, (maxrows, maxcols)::Tuple) where 
     for col in 1:maxcols
         matrix[1, col + 1] = cols[col]
     end
-    return rows, cols, matrix
+    return matrix
 end
 
-function spshow(io::IO, s::SparseMatrixCSC{T}) where {T}
-    # rows, cols, matrix = _spshow(s, size)
-    # get(io, :limit, false)
-    rows, cols, matrix = selectshown(s, displaysize(io) ./ (1,10) .- (6,1))
-    matrix
-end
+spshow(io::IO, s::SparseMatrixCSC{T}) where {T} = selectshown(s, displaysize(io) ./ (1,10) .- (5,2))
 
 function Base.replace_in_print_matrix(A::Matrix{Union{T,Int,Spdef}}, i::Integer, j::Integer,s::AbstractString) where {T}
-    A[i, j] isa Spdef ? Base.replace_with_centered_mark(s) : s
+    if i == j == 1
+        return Base.replace_with_centered_mark(s, c = ' ')
+    elseif A[i, j] isa Spdef
+        return Base.replace_with_centered_mark(s)
+    else
+        return s
+    end
 end
 
 end # module
